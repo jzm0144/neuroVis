@@ -1,7 +1,5 @@
-
-
-
-# ------------------------------  Seeing the Differences between  ------------------------
+# Part1
+# ------------------------------  Measure of Dissimilarity between  ------------------------
 # ------------------------------  PTSD and Control Clamping       ------------------------
 
 for heatmap in heatmaps:
@@ -91,3 +89,63 @@ for heatmap in heatmaps:
     plt.subplot(339)
     m3 = sb.heatmap(bwgroupsDist/len(comb8c))
     plt.savefig('dist_ptsd.png')
+
+    ipdb.set_trace()
+
+
+
+# Part2
+# ------------------------------  Measure of Dissimilarity between  ------------------------
+# ------------------------------  PTSD and Control Clamping by Summing Method  -------------
+'''
+for heatmap in heatmaps:
+    #Create the analyzers
+    analyzer = innvestigate.create_analyzer(heatmap[0],
+                                            model_no_softmax,
+                                            neuron_selection_mode = "index",
+                                            **heatmap[1])
+
+    # Generate the heatmaps
+    analysis_ctrl_clamp = analyzer.analyze(inputs, 0)
+    analysis_ptsd_clamp = analyzer.analyze(inputs, 1)
+
+
+    # Delete the explanations where prediction was incorrect
+    m = []
+    for __ in range(analysis_ctrl_clamp.shape[0]):
+        predNeuron=np.argmax(preds[__]),
+        actualNeuron=np.argmax(outs[__])
+        if predNeuron != actualNeuron:
+            m.append(__)
+            print("skipped = ", __)
+    analysis_ctrl_clamp = np.delete(analysis_ctrl_clamp, m, 0)
+    analysis_ptsd_clamp = np.delete(analysis_ptsd_clamp, m, 0)
+    print(m)
+    del m
+
+    # Working with 8 Control Subjects & PTSD Subjects
+    controls_with_ctrl_clamp  = analysis_ctrl_clamp[:8,:,:,0]
+    controls_with_ptsd_clamp  = analysis_ptsd_clamp[:8,:,:,0]
+
+    groupItems = controls_with_ctrl_clamp.shape[0]
+
+    ptsd_with_ctrl_clamp = analysis_ctrl_clamp[8:16,:,:,0]
+    ptsd_with_ptsd_clamp = analysis_ptsd_clamp[8:16,:,:,0]
+
+
+    control_oppositeClampMap_sum = np.sum(controls_with_ctrl_clamp + controls_with_ptsd_clamp, axis=0)
+    print("Sum of Opposite Clamps on 8 Control Subjects   = ", control_oppositeClampMap_sum/groupItems)
+
+    ptsd_oppositeClampMap_sum = np.sum(ptsd_with_ctrl_clamp + ptsd_with_ptsd_clamp, axis=0)
+    print("Sum of Opposite Clamps on 8 PTSD Subjects.     = ", ptsd_oppositeClampMap_sum/groupItems)
+
+    plt.figure(1)
+    plt.subplot(221)
+    plt.title('8 Control Subjects')
+    m1 = sb.heatmap(control_oppositeClampMap_sum/(groupItems), vmin=-1, vmax=1,cmap='RdBu')
+    plt.subplot(224)
+    plt.title('8 PTSD Subjects')
+    m2 = sb.heatmap(ptsd_oppositeClampMap_sum/(groupItems), vmin=-1, vmax=1, cmap='RdBu')
+    plt.savefig('opp_clampmap_sum.png')
+    ipdb.set_trace()
+'''
