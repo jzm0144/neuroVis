@@ -10,23 +10,23 @@ def codeLabels(yTrain, yTest, disorder): #ABIDE, ADHD, PTSD, ADNI
     if disorder == "ADNI":
         yTrain[yTrain == 'Controls'] = 0
         yTrain[yTrain == 'EMCI']     = 1
-        yTrain[yTrain == 'LMCI']     = 2
-        yTrain[yTrain == 'AD']       = 3
+        yTrain[yTrain == 'LMCI']     = 1
+        yTrain[yTrain == 'AD']       = 1
 
         yTest[yTest   == 'Controls'] = 0
         yTest[yTest   == 'EMCI']     = 1
-        yTest[yTest   == 'LMCI']     = 2
-        yTest[yTest   == 'AD']       = 3
+        yTest[yTest   == 'LMCI']     = 1
+        yTest[yTest   == 'AD']       = 1
     if disorder == "ADHD":
         yTrain[yTrain == 'Controls'] = 0
         yTrain[yTrain == 'ADHD-C']   = 1
-        yTrain[yTrain == 'ADHD-H']   = 2
-        yTrain[yTrain == 'ADHD-I']   = 3
+        yTrain[yTrain == 'ADHD-H']   = 1
+        yTrain[yTrain == 'ADHD-I']   = 1
 
         yTest[yTest   == 'Controls'] = 0
         yTest[yTest   == 'ADHD-C']   = 1
-        yTest[yTest   == 'ADHD-H']   = 2
-        yTest[yTest   == 'ADHD-I']   = 3
+        yTest[yTest   == 'ADHD-H']   = 1
+        yTest[yTest   == 'ADHD-I']   = 1
     if disorder == "ABIDE":
         yTrain[yTrain == 'Controls'] = 0
         yTrain[yTrain == 'Aspergers']= 1

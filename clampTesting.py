@@ -81,7 +81,6 @@ for heatmap in heatmaps:
     print("Distance Within Controls    = ", np.sum(ptsd_ctrl_clamp_Dist/len(comb8c)))
     print("Distance Within PTSD        = ", np.sum(ptsd_ptsd_clamp_Dist/len(comb8c)))
     print("Distance b/w PTSD & Control = ", np.sum(bwgroupsDist/len(comb8c)))
-
     plt.subplot(331)
     m1 = sb.heatmap(ptsd_ctrl_clamp_Dist/len(comb8c))
     plt.subplot(335)
@@ -97,7 +96,7 @@ for heatmap in heatmaps:
 # Part2
 # ------------------------------  Measure of Dissimilarity between  ------------------------
 # ------------------------------  PTSD and Control Clamping by Summing Method  -------------
-'''
+
 for heatmap in heatmaps:
     #Create the analyzers
     analyzer = innvestigate.create_analyzer(heatmap[0],
@@ -148,4 +147,3 @@ for heatmap in heatmaps:
     m2 = sb.heatmap(ptsd_oppositeClampMap_sum/(groupItems), vmin=-1, vmax=1, cmap='RdBu')
     plt.savefig('opp_clampmap_sum.png')
     ipdb.set_trace()
-'''

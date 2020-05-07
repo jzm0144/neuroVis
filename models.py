@@ -15,19 +15,19 @@ def trainModel(input_shape
                ,xTest, yTest
                ,ageMatchUnmatch
                ,dataset
-               ,num_classes):
-
-    batch_size = 64
-    epochs = 64
+               ,num_classes
+               ,batch_size = None
+               ,epochs = 64):
 
     model = Sequential()
     model.add(Conv2D(16, kernel_size=(3, 3), activation='relu', input_shape=input_shape))
     model.add(Conv2D(32, (3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    #model.add(Dropout(0.25))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    #model.add(Dropout(0.02))
     model.add(Flatten())
-    model.add(Dense(12, activation='relu', name="dense_one"))
-    #model.add(Dropout(0.5))
+    model.add(Dense(8, activation='relu', name="dense_one"))
+    #model.add(Dropout(0.01))
     model.add(Dense(num_classes, activation='softmax', name="dense_two"))
 
     model.compile(loss=keras.losses.categorical_crossentropy,
